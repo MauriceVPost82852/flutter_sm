@@ -25,9 +25,12 @@ jobs:
       - run: flutter pub get
       - run: flutter test
       - run: flutter build apk --debug --split-per-abi
-      - run: |
-          cd build/app/outputs/apk/debug/
-          ls
+      
+      - name: Upload files to Actions tab
+        uses: actions/upload-artifact@v2
+        with:
+          name: Debug APKs
+          path: build/app/outputs/apk/debug/
         
       
 

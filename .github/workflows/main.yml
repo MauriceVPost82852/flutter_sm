@@ -26,23 +26,10 @@ jobs:
       - run: flutter test
       - run: flutter build apk --debug --split-per-abi
       - run: |
-          flutter build ios --no-codesign
-          cd build/ios/iphoneos
-          mkdir Payload
-          cd Payload
-          ln -s ../Runner.app
-          cd ..
-          zip -r app.ipa Payload
-      
-          
+          cd build/app/outputs/apk/debug/
+          ls
         
-      - name: Upload file to Actions tab
-        uses: actions/upload-artifact@v2
-        with:
-          name: Uploaded File
-          artifacts: "build/app/outputs/apk/debug/*,build/ios/iphoneos/app.ipa"
-          
-
+      
 
 
 

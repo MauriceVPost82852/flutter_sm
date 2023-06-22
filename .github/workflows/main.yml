@@ -26,12 +26,15 @@ jobs:
       - run: flutter test
       - run: flutter build apk --debug --split-per-abi
       
-      - name: Upload files to Actions tab
-        uses: actions/upload-artifact@v2
+      - name: Copy files to destination folder
+        run: |
+          cp -R build/app/outputs/apk/debug/. up/
+
+      - name: Commit and push changes
+        uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          name: Debug APKs
-          path: build/app/outputs/apk/debug/
-        
+          commit_message: 'Upload debug APKs'
+          file_pattern: 'up/**/*'
       
 
 
